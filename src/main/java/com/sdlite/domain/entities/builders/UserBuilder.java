@@ -9,6 +9,7 @@ public class UserBuilder {
     private String email;
     private String password;
     private String role;
+    private String login;
 
     private UserBuilder(){}
 
@@ -17,11 +18,13 @@ public class UserBuilder {
     }
 
     public User build(){
-        if (name == null) throw new IllegalArgumentException("User must have name");
+        if(name == null) throw new IllegalArgumentException("User must have name");
+        if (login == null) throw new IllegalArgumentException("User must have login");
         User user = new User(name);
         user.setEmail(email);
         user.setPassword(password);
         user.setRole(role);
+        user.setLogin(login);
         return user;
     }
 
@@ -42,6 +45,11 @@ public class UserBuilder {
 
     public  UserBuilder setRole(String role){
         this.role = role;
+        return this;
+    }
+
+    public UserBuilder setLogin(String login){
+        this.login = login;
         return this;
     }
 

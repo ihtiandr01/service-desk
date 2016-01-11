@@ -37,7 +37,16 @@ public class Application implements CommandLineRunner {
         repository.save(new Ticket("Ticket2"));
         repository.save(new Ticket("Ticket3"));
 
+
+        User admin = UserBuilder.newInstance()
+                .setLogin("admin")
+                .setName("Administrator")
+                .setPassword("123")
+                .setEmail("admin@mail.com")
+                .setRole("ADMIN").build();
+
         User user1 = UserBuilder.newInstance()
+                .setLogin("user1")
                 .setName("User 1")
                 .setPassword("123")
                 .setEmail("user1@mail.com")
@@ -45,16 +54,19 @@ public class Application implements CommandLineRunner {
 
         User user2 = UserBuilder.newInstance()
                 .setName("User 2")
+                .setLogin("user2")
                 .setPassword("123")
                 .setEmail("user2@mail.com")
                 .setRole("USER").build();
 
         User user3 = UserBuilder.newInstance()
                 .setName("User 3")
+                .setLogin("user3")
                 .setPassword("123")
                 .setEmail("user3@mail.com")
                 .setRole("USER").build();
 
+        userRepository.save(admin);
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);

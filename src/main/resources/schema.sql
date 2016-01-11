@@ -24,6 +24,7 @@ create table sd_ticket_comments (
 create table sd_users (
   id    bigint DEFAULT nextval('s_user_id'),
   name  varchar(250),
+  login varchar(250),
   email varchar(250),
   password varchar(25),
   role varchar(250),

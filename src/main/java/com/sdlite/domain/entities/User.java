@@ -13,6 +13,9 @@ public class User {
 
     @Column(name="name",nullable = false)
     private String name;
+
+    @Column(name="login",nullable = false)
+    private String login;
     
     @Column(name="email")
     private String email;
@@ -68,6 +71,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public Timestamp getCreated() {
