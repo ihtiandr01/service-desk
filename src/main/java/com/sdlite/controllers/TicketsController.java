@@ -6,9 +6,13 @@ import com.sdlite.domain.entities.Ticket;
 import com.sdlite.domain.entities.TicketComment;
 import com.sdlite.domain.entities.builders.TicketBuilder;
 import com.sdlite.domain.repositaries.TicketCommentRepository;
+import com.sdlite.domain.repositaries.TicketPagingRepository;
 import com.sdlite.domain.repositaries.TicketRepository;
 import com.sdlite.security.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,17 +28,31 @@ import java.util.List;
 public class TicketsController {
 
     @Autowired
-    TicketRepository ticketRepository;
+    TicketPagingRepository ticketRepository;
 
     @Autowired
     TicketCommentRepository commentRepository;
 
     @RequestMapping("/tickets")
-    public String tickets(Model model) {
-        Iterable<Ticket> tickets = ticketRepository.findAll();
-        model.addAttribute("tickets", tickets);
+    public String tickets(Model model, Pageable pageable) {
+        Page<Ticket> pages = ticketRepository.findAll(pageable);
+        model.addAttribute("pages", pages);
+        return "redirect:/tickets/page/1";
+    }
+
+    @RequestMapping("/tickets/page/{pageNumber}")
+    public String ticketsPaging(@PathVariable Integer pageNumber, Model model) {
+        Page<Ticket> currentResults = ticketRepository.findAll(new PageRequest(pageNumber - 1, 20));
+        model.addAttribute("currentResults", currentResults);
+        int current = currentResults.getNumber() + 1;
+        int begin = Math.max(1, current - 5);
+        int end = Math.min(begin + 10, currentResults.getTotalPages());
+        model.addAttribute("beginIndex", begin);
+        model.addAttribute("endIndex", end);
+        model.addAttribute("currentIndex", current);
         return "tickets";
     }
+
 
     @RequestMapping(value = "/newticket", method = RequestMethod.GET)
     public String newTicketForm(Model model) {
@@ -65,13 +83,13 @@ public class TicketsController {
     public String submitNewComment(@PathVariable Long ticketId, @ModelAttribute NewCommentForm newCommentForm, Model model) {
 
         //TODO: add builder for comments
-        TicketComment comment = new TicketComment(ticketId, newCommentForm.getComment(), SecurityHelper.getCurrentUsername(),0L);
+        TicketComment comment = new TicketComment(ticketId, newCommentForm.getComment(), SecurityHelper.getCurrentUsername(), 0L);
         commentRepository.save(comment);
         return "redirect:/ticket/" + ticketId;
     }
 
     @RequestMapping(value = "/ticket/{ticketId}/edit", method = RequestMethod.POST)
-    public String editTicket(){
+    public String editTicket() {
         //TODO: Add functional for ticket edition
         return "edit_ticket";
     }

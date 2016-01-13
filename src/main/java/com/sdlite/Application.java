@@ -3,6 +3,7 @@ package com.sdlite;
 import com.sdlite.domain.entities.Ticket;
 import com.sdlite.domain.entities.User;
 import com.sdlite.domain.entities.builders.UserBuilder;
+import com.sdlite.domain.repositaries.TicketPagingRepository;
 import com.sdlite.domain.repositaries.TicketRepository;
 import com.sdlite.domain.repositaries.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,20 +12,24 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
-    
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
-    
+
     @Autowired
     TicketRepository repository;
-    
+
+    @Autowired
+    TicketPagingRepository ticketPagingRepository;
+
     @Autowired
     UserRepository userRepository;
-    
+
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -33,10 +38,13 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
 
-        repository.save(new Ticket("Ticket1"));
-        repository.save(new Ticket("Ticket2"));
-        repository.save(new Ticket("Ticket3"));
+        /*************************************
+                    TEST DATA START
+        **************************************/
 
+        for (int i = 0; i < 100; i++) {
+            repository.save(new Ticket("Ticket#" + i));
+        }
 
         User admin = UserBuilder.newInstance()
                 .setLogin("admin")
@@ -70,7 +78,10 @@ public class Application implements CommandLineRunner {
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
-        
+
+        /*************************************
+                      TEST DATA END
+         **************************************/
     }
 
 }

@@ -25,9 +25,6 @@ public class SDUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findOneByLogin(username);
-        // List<User> users = userRepository.findByName(username);
-        // if (!users.isEmpty()) {
-        //    User user = users.get(0);
         if (user != null) {
             return new UserDetails() {
                 @Override

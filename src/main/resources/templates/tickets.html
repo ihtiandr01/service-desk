@@ -13,9 +13,7 @@
 </head>
 <body>
 <div th:include="layout :: navigation"/>
-
 <div class="container-fluid">
-
     <table class="table table-striped">
         <thead>
         <tr>
@@ -26,14 +24,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="ticket : ${tickets}">
+        <tr th:each="ticket : ${currentResults}">
             <td th:text="${ticket.getId()}">.</td>
-            <td><a href="ticket.html" th:href="@{'/ticket/'+${ticket.getId()}}"><span th:text="${ticket.getName()}">template file</span></a></td>
+            <td><a href="ticket.html" th:href="@{'/ticket/'+${ticket.getId()}}"><span th:text="${ticket.getName()}">template file</span></a>
+            </td>
             <td th:text="${ticket.getCreated()}">ticket.created</td>
             <!--td th:text="${ticket.priority}">ticket.priority</td-->
         </tr>
         </tbody>
     </table>
+    <div th:include="layout :: tablePagination"/>
 </div>
 </body>
 </html>
