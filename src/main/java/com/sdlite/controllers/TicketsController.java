@@ -35,8 +35,6 @@ public class TicketsController {
 
     @RequestMapping("/tickets")
     public String tickets(Model model, Pageable pageable) {
-        Page<Ticket> pages = ticketRepository.findAll(pageable);
-        model.addAttribute("pages", pages);
         return "redirect:/tickets/page/1";
     }
 
@@ -50,6 +48,7 @@ public class TicketsController {
         model.addAttribute("beginIndex", begin);
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
+        model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
         return "tickets";
     }
 
@@ -57,6 +56,7 @@ public class TicketsController {
     @RequestMapping(value = "/newticket", method = RequestMethod.GET)
     public String newTicketForm(Model model) {
         model.addAttribute("newticket", new NewTicketForm());
+        model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
         return "newticket";
     }
 
@@ -76,6 +76,7 @@ public class TicketsController {
         List<TicketComment> comments = commentRepository.findByTicketId(ticketId);
         model.addAttribute("comments", comments);
         model.addAttribute("ticket", ticketRepository.findOne(ticketId));
+        model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
         return "ticket";
     }
 

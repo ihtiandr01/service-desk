@@ -18,8 +18,8 @@
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <!--root level="debug">
+    <root level="error">
         <appender-ref ref="STDOUT" />
-    </root-->
+    </root>
 
 </configuration>
