@@ -5,6 +5,7 @@ public class NewUserForm {
     private String password;
     private String email;
     private String role;
+    private String login;
 
     public String getName() {
         return name;
@@ -36,5 +37,13 @@ public class NewUserForm {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 }

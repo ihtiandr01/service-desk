@@ -1,8 +1,10 @@
 package com.sdlite;
 
+import com.sdlite.domain.entities.InventoryItem;
 import com.sdlite.domain.entities.Ticket;
 import com.sdlite.domain.entities.User;
 import com.sdlite.domain.entities.builders.UserBuilder;
+import com.sdlite.domain.repositaries.InventoryPagingRepository;
 import com.sdlite.domain.repositaries.TicketPagingRepository;
 import com.sdlite.domain.repositaries.TicketRepository;
 import com.sdlite.domain.repositaries.UserRepository;
@@ -30,6 +32,8 @@ public class Application implements CommandLineRunner {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    InventoryPagingRepository inventoryRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -46,6 +50,9 @@ public class Application implements CommandLineRunner {
             repository.save(new Ticket("Ticket#" + i));
         }
 
+        for (int i = 0; i < 100; i++) {
+            inventoryRepository.save(new InventoryItem("InventoryItem#" + i));
+        }
         User admin = UserBuilder.newInstance()
                 .setLogin("admin")
                 .setName("Administrator")

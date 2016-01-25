@@ -12,6 +12,13 @@ create table sd_tickets (
   created timestamp
 );
 
+create table sd_inventory (
+  id    bigint DEFAULT nextval('s_inventory_id'),
+  name  varchar(250),
+  description varchar(4000),
+  created timestamp
+);
+
 create table sd_ticket_comments (
   id  bigint DEFAULT nextval('s_comment_id'),
   ticket_id bigint,
