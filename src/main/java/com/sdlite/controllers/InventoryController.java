@@ -30,13 +30,7 @@ public class InventoryController {
     @RequestMapping("/inventory/page/{pageNumber}")
     public String ticketsPaging(@PathVariable Integer pageNumber, Model model) {
         Page<InventoryItem> currentResults = inventoryRepository.findAll(new PageRequest(pageNumber - 1, 20));
-        model.addAttribute("currentResults", currentResults);
-        int current = currentResults.getNumber() + 1;
-        int begin = Math.max(1, current - 5);
-        int end = Math.min(begin + 10, currentResults.getTotalPages());
-        model.addAttribute("beginIndex", begin);
-        model.addAttribute("endIndex", end);
-        model.addAttribute("currentIndex", current);
+        PagingHelper.newInstance().createPagingModel(model,currentResults);
         model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
         return "inventory";
     }
