@@ -1,13 +1,11 @@
 package com.sdlite;
 
+import com.sdlite.domain.entities.ConfigurationItem;
 import com.sdlite.domain.entities.InventoryItem;
 import com.sdlite.domain.entities.Ticket;
 import com.sdlite.domain.entities.User;
 import com.sdlite.domain.entities.builders.UserBuilder;
-import com.sdlite.domain.repositaries.InventoryPagingRepository;
-import com.sdlite.domain.repositaries.TicketPagingRepository;
-import com.sdlite.domain.repositaries.TicketRepository;
-import com.sdlite.domain.repositaries.UserRepository;
+import com.sdlite.domain.repositaries.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -34,6 +32,10 @@ public class Application implements CommandLineRunner {
 
     @Autowired
     InventoryPagingRepository inventoryRepository;
+
+    @Autowired
+    SettingsRepository settingsRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -85,6 +87,9 @@ public class Application implements CommandLineRunner {
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
+
+        ConfigurationItem dateItem = new ConfigurationItem("sd.confitem.date_time_mask","dd.MM.yyyy HH:mm");
+        settingsRepository.save(dateItem);
 
         /*************************************
                       TEST DATA END

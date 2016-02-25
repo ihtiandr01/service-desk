@@ -28,7 +28,7 @@
             <td th:text="${ticket.getId()}">.</td>
             <td><a href="ticket.html" th:href="@{'/ticket/'+${ticket.getId()}}"><span th:text="${ticket.getName()}">template file</span></a>
             </td>
-            <td th:text="${ticket.getCreated()}">ticket.created</td>
+            <td th:text="${#dates.format(ticket.getCreated(),'dd.MM.yyyy HH:mm')}">ticket.created</td>
             <!--td th:text="${ticket.priority}">ticket.priority</td-->
         </tr>
         </tbody>

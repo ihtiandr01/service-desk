@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home</title>
+    <title>Configuration</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- Bootstrap -->
     <link href="../static/css/bootstrap.min.css"
@@ -17,11 +17,8 @@
 
 
 <div class="container-fluid">
-    <p>Current tickets:</p>
-
-    <p>Assigned to me:</p>
-
-    <p>Created by me:</p>
+    <p>Key: <span th:text="${confItem.getKey()}">key</span></p>
+    <p>Value: <span th:text="${confItem.getValue()}">value</span></p>
 </div>
 </body>
 </html>
