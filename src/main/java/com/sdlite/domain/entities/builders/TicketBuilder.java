@@ -12,6 +12,10 @@ public class TicketBuilder {
 
     private Long authorId;
 
+    private Long assignId;
+
+    private String assignName;
+
     private TicketBuilder() {
 
     }
@@ -30,6 +34,10 @@ public class TicketBuilder {
             ticket.setAuthorId(authorId);
             ticket.setAuthorName(authorName);
         }
+//        if(assignId!=null&&assignName!=null){
+            ticket.setAssignId(assignId);
+            ticket.setAssignName(assignName);
+//        }
 
         return ticket;
     }
@@ -51,6 +59,16 @@ public class TicketBuilder {
 
     public TicketBuilder setAuthorId(Long authorId) {
         this.authorId = authorId;
+        return this;
+    }
+
+    public TicketBuilder setAssignId(Long assignId) {
+        this.assignId = assignId;
+        return this;
+    }
+
+    public TicketBuilder setAssignName(String assignName){
+        this.assignName = assignName;
         return this;
     }
 

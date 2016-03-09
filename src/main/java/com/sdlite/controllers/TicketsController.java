@@ -2,25 +2,31 @@ package com.sdlite.controllers;
 
 import com.sdlite.controllers.forms.NewCommentForm;
 import com.sdlite.controllers.forms.NewTicketForm;
+import com.sdlite.domain.UserHelper;
 import com.sdlite.domain.entities.Ticket;
 import com.sdlite.domain.entities.TicketComment;
+import com.sdlite.domain.entities.User;
 import com.sdlite.domain.entities.builders.TicketBuilder;
 import com.sdlite.domain.repositaries.TicketCommentRepository;
 import com.sdlite.domain.repositaries.TicketPagingRepository;
 import com.sdlite.domain.repositaries.TicketRepository;
+import com.sdlite.domain.repositaries.UserRepository;
 import com.sdlite.security.SecurityHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,6 +38,12 @@ public class TicketsController {
 
     @Autowired
     TicketCommentRepository commentRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    UserHelper userHelper;
 
     @RequestMapping("/tickets")
     public String tickets(Model model, Pageable pageable) {
@@ -58,9 +70,15 @@ public class TicketsController {
         Ticket ticket = TicketBuilder.newInstance()
                 .setName(newTicketForm.getName())
                 .setDescription(newTicketForm.getDescription())
+                .setAssignName(newTicketForm.getAssign())
                 .build();
         ticketRepository.save(ticket);
         return "redirect:/tickets";
+    }
+
+    @RequestMapping(value = "/assign_list", method = RequestMethod.GET,headers="Accept=*/*")
+    public @ResponseBody Iterable<User> getAssignList(@RequestParam("term") String query) {
+        return userHelper.findByLikeName(query);
     }
 
     @RequestMapping(value = "/ticket/{ticketId}", method = RequestMethod.GET)

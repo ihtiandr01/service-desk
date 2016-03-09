@@ -9,6 +9,8 @@ create table sd_tickets (
   description varchar(4000),
   user_id bigint,
   user_name varchar(250),
+  assign_id bigint,
+  assign_name varchar(250),
   created timestamp
 );
 

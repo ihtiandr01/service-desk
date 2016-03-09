@@ -22,6 +22,8 @@
 
     <p>Created: <span th:text="${ticket.getCreated()}">Created</span>.</p>
 
+    <p>Assign: <span th:text="${ticket.getAssignName()}">Assign</span>.</p>
+
     <form action="#" th:action="@{'/ticket/'+${ticket.getId()}+'/edit'}" th:object="${edit_ticket}" method="post"
           class="form-horizontal" role="form">
         <div class="form-group">

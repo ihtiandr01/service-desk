@@ -27,6 +27,12 @@ public class Ticket implements Serializable {
     @Column(name= "user_id")
     private Long authorId;
 
+    @Column(name="assign_id")
+    private Long assignId;
+
+    @Column(name="assign_name")
+    private String assignName;
+
     protected Ticket() {
     }
 
@@ -73,6 +79,22 @@ public class Ticket implements Serializable {
 
     public Long getId(){
         return id;
+    }
+
+    public Long getAssignId() {
+        return assignId;
+    }
+
+    public void setAssignId(Long assignId) {
+        this.assignId = assignId;
+    }
+
+    public String getAssignName() {
+        return assignName;
+    }
+
+    public void setAssignName(String assignName) {
+        this.assignName = assignName;
     }
 
     @Override
