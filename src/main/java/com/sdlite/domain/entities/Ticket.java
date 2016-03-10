@@ -33,6 +33,12 @@ public class Ticket implements Serializable {
     @Column(name="assign_name")
     private String assignName;
 
+    @Column(name="priority")
+    private String priority;
+
+    @Column(name="status")
+    private String status;
+
     protected Ticket() {
     }
 
@@ -95,6 +101,22 @@ public class Ticket implements Serializable {
 
     public void setAssignName(String assignName) {
         this.assignName = assignName;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

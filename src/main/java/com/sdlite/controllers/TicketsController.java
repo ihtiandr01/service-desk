@@ -71,6 +71,7 @@ public class TicketsController {
                 .setName(newTicketForm.getName())
                 .setDescription(newTicketForm.getDescription())
                 .setAssignName(newTicketForm.getAssign())
+                .setPriority(newTicketForm.getPriority())
                 .build();
         ticketRepository.save(ticket);
         return "redirect:/tickets";

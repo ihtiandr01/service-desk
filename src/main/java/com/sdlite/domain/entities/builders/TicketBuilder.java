@@ -1,6 +1,7 @@
 package com.sdlite.domain.entities.builders;
 
 import com.sdlite.domain.entities.Ticket;
+import com.sun.javafx.binding.BidirectionalBinding;
 
 public class TicketBuilder {
 
@@ -15,6 +16,10 @@ public class TicketBuilder {
     private Long assignId;
 
     private String assignName;
+
+    private String priority;
+
+    private String status;
 
     private TicketBuilder() {
 
@@ -34,10 +39,11 @@ public class TicketBuilder {
             ticket.setAuthorId(authorId);
             ticket.setAuthorName(authorName);
         }
-//        if(assignId!=null&&assignName!=null){
-            ticket.setAssignId(assignId);
-            ticket.setAssignName(assignName);
-//        }
+        ticket.setAssignId(assignId);
+        ticket.setAssignName(assignName);
+        ticket.setPriority(priority);
+        if(status == null) status = "New";
+        ticket.setStatus(status);
 
         return ticket;
     }
@@ -72,4 +78,13 @@ public class TicketBuilder {
         return this;
     }
 
+    public TicketBuilder setPriority(String priority){
+        this.priority = priority;
+        return this;
+    }
+
+    public TicketBuilder setStatus(String status){
+        this.status = status;
+        return this;
+    }
 }

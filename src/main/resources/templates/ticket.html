@@ -24,6 +24,10 @@
 
     <p>Assign: <span th:text="${ticket.getAssignName()}">Assign</span>.</p>
 
+    <p>Status: <span th:text="${ticket.getStatus()}">Status</span>.</p>
+
+    <p>Priority: <span th:text="${ticket.getPriority()}">Priority</span>.</p>
+
     <form action="#" th:action="@{'/ticket/'+${ticket.getId()}+'/edit'}" th:object="${edit_ticket}" method="post"
           class="form-horizontal" role="form">
         <div class="form-group">
@@ -35,21 +39,16 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <!--th>id</th-->
             <th>Comment</th>
             <th>Created</th>
             <th>Author</th>
-            <!--th>Priority</th-->
         </tr>
         </thead>
         <tbody>
         <tr th:each="comment : ${comments}">
-            <!--td th:text="${ticket.getId()}">ticket.id</td>
-            <td th:text="${ticket.getName()}">ticket.name</td-->
             <td th:text="${comment.getComment()}">ticket.created</td>
             <td th:text="${comment.getCreated()}">ticket.created</td>
             <td th:text="${comment.getAuthorName()}">ticket.created</td>
-            <!--td th:text="${ticket.priority}">ticket.priority</td-->
         </tr>
         </tbody>
     </table>

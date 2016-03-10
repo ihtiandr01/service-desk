@@ -19,8 +19,10 @@
         <tr>
             <th>id</th>
             <th>Name</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Assigned to</th>
             <th>Created</th>
-            <!--th>Priority</th-->
         </tr>
         </thead>
         <tbody>
@@ -28,8 +30,10 @@
             <td th:text="${ticket.getId()}">.</td>
             <td><a href="ticket.html" th:href="@{'/ticket/'+${ticket.getId()}}"><span th:text="${ticket.getName()}">template file</span></a>
             </td>
+            <td th:text="${ticket.getPriority()}">ticket.priority</td>
+            <td th:text="${ticket.getStatus()}">ticket.priority</td>
+            <td th:text="${ticket.getAssignName()}">ticket.priority</td>
             <td th:text="${#dates.format(ticket.getCreated(),'dd.MM.yyyy HH:mm')}">ticket.created</td>
-            <!--td th:text="${ticket.priority}">ticket.priority</td-->
         </tr>
         </tbody>
     </table>

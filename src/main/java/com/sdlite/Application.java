@@ -4,6 +4,7 @@ import com.sdlite.domain.entities.ConfigurationItem;
 import com.sdlite.domain.entities.InventoryItem;
 import com.sdlite.domain.entities.Ticket;
 import com.sdlite.domain.entities.User;
+import com.sdlite.domain.entities.builders.TicketBuilder;
 import com.sdlite.domain.entities.builders.UserBuilder;
 import com.sdlite.domain.repositaries.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,11 +49,16 @@ public class Application implements CommandLineRunner {
                     TEST DATA START
         **************************************/
 
-        for (int i = 0; i < 100; i++) {
-            repository.save(new Ticket("Ticket#" + i));
+        for (int i = 0; i < 15; i++) {
+            Ticket ticket = TicketBuilder.newInstance()
+                    .setAssignName("User 1")
+                    .setName("Ticket#" + i)
+                    .setPriority("Normal")
+                    .build();
+            repository.save(ticket);
         }
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 15; i++) {
             inventoryRepository.save(new InventoryItem("InventoryItem#" + i));
         }
         User admin = UserBuilder.newInstance()

@@ -11,6 +11,8 @@ create table sd_tickets (
   user_name varchar(250),
   assign_id bigint,
   assign_name varchar(250),
+  status varchar(250),
+  priority varchar(250),
   created timestamp
 );
 

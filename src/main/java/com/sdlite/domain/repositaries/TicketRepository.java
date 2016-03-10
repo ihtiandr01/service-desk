@@ -8,4 +8,8 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface TicketRepository extends CrudRepository<Ticket, Long>, JpaSpecificationExecutor<Ticket> {
     List<Ticket> findByName(String name);
+    List<Ticket> findByStatus(String status);
+    List<Ticket> findByAuthorName(String author);
+    List<Ticket> findByAssignName(String assignName);
+    List<Ticket> findByAssignId(long assignId);
 }
