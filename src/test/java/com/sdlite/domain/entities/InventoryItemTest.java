@@ -5,9 +5,9 @@ import org.junit.Test;
 
 public class InventoryItemTest {
 
-    @Test
-    public void testInventoryItem(){
+  @Test
+  public void testInventoryItem() {
 
-    }
+  }
 
 }

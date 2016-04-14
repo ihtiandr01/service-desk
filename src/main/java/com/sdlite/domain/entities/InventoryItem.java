@@ -8,48 +8,46 @@ import java.util.Date;
 @Entity
 @Table(name = "sd_inventory")
 public class InventoryItem {
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
+  @Column(nullable = false)
+  private String name;
+  private String description;
+  @Column(nullable = false)
+  private Timestamp created;
 
-    @Column(nullable = false)
-    private String name;
+  protected InventoryItem() {
+  }
 
-    private String description;
+  public InventoryItem(String name) {
+    this.name = name;
+    created = new Timestamp(System.currentTimeMillis());
+  }
 
-    @Column(nullable = false)
-    private Timestamp created;
+  public String getName() {
+    return name;
+  }
 
-    protected InventoryItem(){}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public InventoryItem(String name){
-        this.name = name;
-        created = new Timestamp(System.currentTimeMillis());
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Date getCreated() {
-        return new Date(created.getTime());
-    }
+  public Date getCreated() {
+    return new Date(created.getTime());
+  }
 
 
 }

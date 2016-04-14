@@ -16,37 +16,37 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebMvcSecurity
 public class SDWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    SDUserDetailsService userDetailsService;
+  @Autowired
+  SDUserDetailsService userDetailsService;
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**", "/css/**");
-    }
+  @Override
+  public void configure(WebSecurity web) throws Exception {
+    web.ignoring().antMatchers("/js/**", "/css/**");
+  }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .userDetailsService(userDetailsService)
-                .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()//.defaultSuccessUrl("/")
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login");
-    }
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http
+            .userDetailsService(userDetailsService)
+            .authorizeRequests()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()//.defaultSuccessUrl("/")
+            .loginPage("/login")
+            .permitAll()
+            .and()
+            .logout()
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutSuccessUrl("/login");
+  }
 
-    @Autowired
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
-    }
+  @Autowired
+  public void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(userDetailsService);
+  }
 
-    @Override
-    protected UserDetailsService userDetailsService() {
-        return userDetailsService;
-    }
+  @Override
+  protected UserDetailsService userDetailsService() {
+    return userDetailsService;
+  }
 }

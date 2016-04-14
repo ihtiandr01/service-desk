@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ConfigController {
 
-    @Autowired
-    SettingsRepository settingsRepository;
+  @Autowired
+  SettingsRepository settingsRepository;
 
-    @RequestMapping("/config")
-    public String home(Model model){
-        model.addAttribute("confItem", settingsRepository.findOneByKey("sd.confitem.date_time_mask"));
-        model.addAttribute("currentUser",  SecurityHelper.getCurrentUsername());
-        return "config";
-    }
+  @RequestMapping("/config")
+  public String home(Model model) {
+    model.addAttribute("confItem", settingsRepository.findOneByKey("sd.confitem.date_time_mask"));
+    model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
+    return "config";
+  }
 }

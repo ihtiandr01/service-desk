@@ -15,18 +15,18 @@ import static org.junit.Assert.assertThat;
 @SpringApplicationConfiguration(classes = Application.class)
 public class TicketCommentTest {
 
-    @Test
-    public void testTicketComment() {
-        TicketComment ticketComment = new TicketComment();
-        ticketComment.setAuthorId(112L);
-        ticketComment.setAuthorName("Author Name");
-        ticketComment.setComment("Comment comment");
-        ticketComment.setTicketId(1L);
+  @Test
+  public void testTicketComment() {
+    TicketComment ticketComment = new TicketComment();
+    ticketComment.setAuthorId(112L);
+    ticketComment.setAuthorName("Author Name");
+    ticketComment.setComment("Comment comment");
+    ticketComment.setTicketId(1L);
 
-        assertThat(ticketComment.getAuthorId(), is(112L));
-        assertThat(ticketComment.getAuthorName(), is("Author Name"));
-        assertThat(ticketComment.getComment(), is("Comment comment"));
-        assertThat(ticketComment.getTicketId(), is(1L));
-    }
+    assertThat(ticketComment.getAuthorId(), is(112L));
+    assertThat(ticketComment.getAuthorName(), is("Author Name"));
+    assertThat(ticketComment.getComment(), is("Comment comment"));
+    assertThat(ticketComment.getTicketId(), is(1L));
+  }
 
 }

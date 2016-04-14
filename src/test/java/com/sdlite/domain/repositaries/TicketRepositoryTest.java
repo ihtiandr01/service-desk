@@ -19,20 +19,20 @@ import static org.junit.Assert.assertThat;
 @SpringApplicationConfiguration(classes = Application.class)
 public class TicketRepositoryTest {
 
-    @Autowired
-    TicketRepository ticketRepository;
+  @Autowired
+  TicketRepository ticketRepository;
 
-    @Test
-    public void testTicketRepository() {
-        long id = ticketRepository.save(new Ticket("Test Ticket #001")).getId();
+  @Test
+  public void testTicketRepository() {
+    long id = ticketRepository.save(new Ticket("Test Ticket #001")).getId();
 
-        Ticket ticket = ticketRepository.findOne(id);
-        assertThat(ticket.getName(),is("Test Ticket #001"));
+    Ticket ticket = ticketRepository.findOne(id);
+    assertThat(ticket.getName(), is("Test Ticket #001"));
 
-        List<Ticket> tickets = ticketRepository.findByName("Test Ticket #001");
-        assertThat(tickets.isEmpty(), is(false));
-        assertThat(tickets.get(0).getName(), is("Test Ticket #001"));
+    List<Ticket> tickets = ticketRepository.findByName("Test Ticket #001");
+    assertThat(tickets.isEmpty(), is(false));
+    assertThat(tickets.get(0).getName(), is("Test Ticket #001"));
 
-    }
+  }
 
 }

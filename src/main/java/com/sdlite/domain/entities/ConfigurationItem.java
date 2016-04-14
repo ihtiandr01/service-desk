@@ -9,34 +9,33 @@ import javax.persistence.Table;
 @Table(name = "sd_settings")
 public class ConfigurationItem {
 
-    @Id
-    @Column(name="key", nullable=false)
-    private String key;
+  @Id
+  @Column(name = "key", nullable = false)
+  private String key;
+  @Column(name = "value")
+  private String value;
 
-    @Column(name="value")
-    private String value;
+  protected ConfigurationItem() {
+  }
 
-    protected ConfigurationItem() {
-    }
+  public ConfigurationItem(String key, String value) {
+    this.key = key;
+    this.value = value;
+  }
 
-    public ConfigurationItem(String key, String value){
-        this.key = key;
-        this.value = value;
-    }
+  public String getKey() {
+    return key;
+  }
 
-    public String getKey() {
-        return key;
-    }
+  public void setKey(String key) {
+    this.key = key;
+  }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
+  public String getValue() {
+    return value;
+  }
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
+  public void setValue(String value) {
+    this.value = value;
+  }
 }

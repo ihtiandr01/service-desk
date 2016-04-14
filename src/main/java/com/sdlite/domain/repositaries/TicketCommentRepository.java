@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface TicketCommentRepository extends CrudRepository<TicketComment, Long> {
-    List<TicketComment> findByTicketId(Long ticketId);
+  List<TicketComment> findByTicketId(Long ticketId);
 }

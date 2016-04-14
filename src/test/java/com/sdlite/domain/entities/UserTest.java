@@ -15,20 +15,20 @@ import static org.junit.Assert.assertThat;
 @SpringApplicationConfiguration(classes = Application.class)
 public class UserTest {
 
-    @Test
-    public void testUserEntity() {
-        User user = new User("User Test");
-        user.setName("Name");
-        user.setEmail("Email");
-        user.setLogin("login123");
-        user.setPassword("Password");
-        user.setRole("Role");
+  @Test
+  public void testUserEntity() {
+    User user = new User("User Test");
+    user.setName("Name");
+    user.setEmail("Email");
+    user.setLogin("login123");
+    user.setPassword("Password");
+    user.setRole("Role");
 
-        assertThat(user.getName(), is("Name"));
-        assertThat(user.getEmail(), is("Email"));
-        assertThat(user.getLogin(), is("login123"));
-        assertThat(user.getPassword(), is("Password"));
-        assertThat(user.getRole(), is("Role"));
-    }
+    assertThat(user.getName(), is("Name"));
+    assertThat(user.getEmail(), is("Email"));
+    assertThat(user.getLogin(), is("login123"));
+    assertThat(user.getPassword(), is("Password"));
+    assertThat(user.getRole(), is("Role"));
+  }
 
 }

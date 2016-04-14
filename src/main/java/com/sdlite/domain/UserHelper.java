@@ -14,17 +14,17 @@ import javax.persistence.criteria.Root;
 @Component
 public class UserHelper {
 
-    @Autowired
-    private UserRepository userRepository;
+  @Autowired
+  private UserRepository userRepository;
 
-    public Iterable<User> findByLikeName(final String query){
-        Specification spec = new Specification<User>(){
-            @Override
-            public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.like(root.get("name"), query+"%");
-            }
-        };
-        return userRepository.findAll(spec);
-    }
+  public Iterable<User> findByLikeName(final String query) {
+    Specification spec = new Specification<User>() {
+      @Override
+      public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+        return criteriaBuilder.like(root.get("name"), query + "%");
+      }
+    };
+    return userRepository.findAll(spec);
+  }
 
 }

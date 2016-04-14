@@ -17,17 +17,17 @@ import static org.hamcrest.core.Is.is;
 @SpringApplicationConfiguration(classes = Application.class)
 public class SettingsRepositoryTest {
 
-    @Autowired
-    SettingsRepository repository;
+  @Autowired
+  SettingsRepository repository;
 
-    @Test
-    public void testSettingsRepository(){
-        ConfigurationItem confItem = new ConfigurationItem("testKey","testValue");
-        repository.save(confItem);
-        confItem = repository.findOneByKey("testKey");
-        assertThat(confItem.getKey(),is("testKey"));
-        assertThat(confItem.getValue(),is("testValue"));
-    }
+  @Test
+  public void testSettingsRepository() {
+    ConfigurationItem confItem = new ConfigurationItem("testKey", "testValue");
+    repository.save(confItem);
+    confItem = repository.findOneByKey("testKey");
+    assertThat(confItem.getKey(), is("testKey"));
+    assertThat(confItem.getValue(), is("testValue"));
+  }
 
 
 }

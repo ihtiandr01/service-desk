@@ -14,16 +14,16 @@ import javax.persistence.criteria.Root;
 @Component
 public class TicketHelper {
 
-    @Autowired
-    private TicketRepository ticketRepository;
+  @Autowired
+  private TicketRepository ticketRepository;
 
-    public Iterable<Ticket> findByLikeName(final String query){
-        Specification spec = new Specification<Ticket>(){
-            @Override
-            public Predicate toPredicate(Root<Ticket> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.like(root.get("name"), query+"%");
-            }
-        };
-        return ticketRepository.findAll(spec);
-    }
+  public Iterable<Ticket> findByLikeName(final String query) {
+    Specification spec = new Specification<Ticket>() {
+      @Override
+      public Predicate toPredicate(Root<Ticket> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+        return criteriaBuilder.like(root.get("name"), query + "%");
+      }
+    };
+    return ticketRepository.findAll(spec);
+  }
 }
