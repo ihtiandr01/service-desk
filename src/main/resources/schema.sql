@@ -19,6 +19,7 @@ create table sd_tickets (
 create table sd_inventory (
   id    bigint DEFAULT nextval('s_inventory_id'),
   name  varchar(250),
+  uuid varchar(4000),
   description varchar(4000),
   created timestamp
 );

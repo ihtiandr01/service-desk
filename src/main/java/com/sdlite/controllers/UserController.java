@@ -44,7 +44,7 @@ public class UserController {
   }
 
   @RequestMapping(value = "/newuser", method = RequestMethod.POST)
-  public String submitNewTicket(@ModelAttribute NewUserForm newUserForm, Model model) {
+  public String submitNewUser(@ModelAttribute NewUserForm newUserForm, Model model) {
     User user = UserBuilder.newInstance()
             .setName(newUserForm.getName())
             .setPassword(newUserForm.getPassword())

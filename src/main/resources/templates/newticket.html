@@ -4,6 +4,7 @@
     <title>New Ticket</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="../static/css/sd.css" th:href="@{/css/sd.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -14,48 +15,55 @@
 <div th:include="layout :: navigation"/>
 
 <div class="container-fluid">
-    <form action="#" th:action="@{/newticket}" th:object="${newticket}" method="post" class="form-horizontal"
-          role="form">
-        <div class="form-group">
-            <label for="name" class="control-label col-sm-2">Name:</label>
-            <div class="col-sm-6">
-                <input type="text" id="name" name="name" value="" th:field="*{name}" required="required"
-                       class="form-control"/>
-            </div>
-            <span class="help-block"> </span>
+    <div class="row">
+        <div th:include="layout :: leftSideNavMenu"/>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <form action="#" th:action="@{/newticket}" th:object="${newticket}" method="post" class="form-horizontal"
+                  role="form">
+                <div class="form-group">
+                    <label for="name" class="control-label col-sm-2">Name:</label>
+                    <div class="col-sm-6">
+                        <input type="text" id="name" name="name" value="" th:field="*{name}" required="required"
+                               class="form-control"/>
+                    </div>
+                    <span class="help-block"> </span>
+                </div>
+                <div class="form-group">
+                    <label for="description" class="control-label col-sm-2">Description:</label>
+                    <div class="col-sm-6">
+                        <textarea id="description" name="description" th:field="*{description}"
+                                  class="form-control"></textarea>
+                    </div>
+                    <span class="help-block"></span>
+                </div>
+                <div class="form-group">
+                    <label for="assign" class="control-label col-sm-2">Assign to:</label>
+                    <div class="col-sm-2">
+                        <input type="text" id="assign" name="assign" value="" th:field="*{assign}"
+                               class="form-control"/>
+                    </div>
+                    <span class="help-block"> </span>
+                </div>
+                <div class="form-group">
+                    <label for="priority" class="control-label col-sm-2">Priority</label>
+                    <div class="col-sm-2">
+                        <select th:field="*{priority}" class="form-control">
+                            <option value="Low">Low</option>
+                            <option value="Normal">Normal</option>
+                            <option value="Major">Major</option>
+                            <option value="Critical">Critical</option>
+                            <option value="Blocker">Blocker</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="description" class="control-label col-sm-2">Description:</label>
-            <div class="col-sm-6">
-                <textarea id="description" name="description" th:field="*{description}" class="form-control"></textarea>
-            </div>
-            <span class="help-block"></span>
-        </div>
-        <div class="form-group">
-            <label for="assign" class="control-label col-sm-2">Assign to:</label>
-            <div class="col-sm-2">
-                <input type="text" id="assign" name="assign" value="" th:field="*{assign}" class="form-control"/>
-            </div>
-            <span class="help-block"> </span>
-        </div>
-        <div class="form-group">
-            <label for="priority" class="control-label col-sm-2">Priority</label>
-            <div class="col-sm-2">
-                <select th:field="*{priority}" class="form-control">
-                    <option value="Low">Low</option>
-                    <option value="Normal">Normal</option>
-                    <option value="Major">Major</option>
-                    <option value="Critical">Critical</option>
-                    <option value="Blocker">Blocker</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Submit</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 <script type="text/javascript">
             $(document).ready(function(){
@@ -74,6 +82,7 @@
                 }
               });
             });
+
 
 </script>
 </body>

@@ -7,6 +7,8 @@
     <link href="../static/css/bootstrap.min.css"
           th:href="@{/css/bootstrap.min.css}"
           rel="stylesheet"/>
+    <link href="../static/css/sd.css" th:href="@{/css/sd.css}"
+          rel="stylesheet"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
@@ -14,30 +16,35 @@
 <body>
 <div th:include="layout :: navigation"/>
 <div class="container-fluid">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>Name</th>
-            <th>Priority</th>
-            <th>Status</th>
-            <th>Assigned to</th>
-            <th>Created</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="ticket : ${currentResults}">
-            <td th:text="${ticket.getId()}">.</td>
-            <td><a href="ticket.html" th:href="@{'/ticket/'+${ticket.getId()}}"><span th:text="${ticket.getName()}">template file</span></a>
-            </td>
-            <td th:text="${ticket.getPriority()}">ticket.priority</td>
-            <td th:text="${ticket.getStatus()}">ticket.priority</td>
-            <td th:text="${ticket.getAssignName()}">ticket.priority</td>
-            <td th:text="${#dates.format(ticket.getCreated(),'dd.MM.yyyy HH:mm')}">ticket.created</td>
-        </tr>
-        </tbody>
-    </table>
-    <div th:include="layout :: tablePagination"/>
+    <div class="row">
+        <div th:include="layout :: leftSideNavMenu"/>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Assigned to</th>
+                <th>Created</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ticket : ${currentResults}">
+                <td th:text="${ticket.getId()}">.</td>
+                <td><a href="ticket.html" th:href="@{'/ticket/'+${ticket.getId()}}"><span th:text="${ticket.getName()}">template file</span></a>
+                </td>
+                <td th:text="${ticket.getPriority()}">ticket.priority</td>
+                <td th:text="${ticket.getStatus()}">ticket.priority</td>
+                <td th:text="${ticket.getAssignName()}">ticket.priority</td>
+                <td th:text="${#dates.format(ticket.getCreated(),'dd.MM.yyyy HH:mm')}">ticket.created</td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:include="layout :: tablePagination"/>
+    </div>
+</div>
 </div>
 </body>
 </html>

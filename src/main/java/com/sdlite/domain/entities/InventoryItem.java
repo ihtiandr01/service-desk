@@ -13,6 +13,7 @@ public class InventoryItem {
   private Long id;
   @Column(nullable = false)
   private String name;
+  private String uuid;
   private String description;
   @Column(nullable = false)
   private Timestamp created;
@@ -23,6 +24,7 @@ public class InventoryItem {
   public InventoryItem(String name) {
     this.name = name;
     created = new Timestamp(System.currentTimeMillis());
+    uuid = java.util.UUID.randomUUID().toString();
   }
 
   public String getName() {
@@ -49,5 +51,11 @@ public class InventoryItem {
     return new Date(created.getTime());
   }
 
+  public String getUuid() {
+    return uuid;
+  }
 
+  public void setUuid(String uuid) {
+    this.uuid = uuid;
+  }
 }

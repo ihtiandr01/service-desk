@@ -26,13 +26,10 @@ public class TicketsController {
 
   @Autowired
   TicketPagingRepository ticketRepository;
-
   @Autowired
   TicketCommentRepository commentRepository;
-
   @Autowired
   UserRepository userRepository;
-
   @Autowired
   UserHelper userHelper;
 

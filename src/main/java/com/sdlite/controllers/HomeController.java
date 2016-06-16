@@ -16,7 +16,6 @@ public class HomeController {
 
   @Autowired
   private UserRepository userRepository;
-
   @Autowired
   private TicketRepository ticketRepository;
 
