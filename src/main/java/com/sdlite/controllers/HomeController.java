@@ -1,6 +1,7 @@
 package com.sdlite.controllers;
 
 import com.sdlite.common.TicketStatus;
+import com.sdlite.configuration.ConfigurationStorage;
 import com.sdlite.domain.entities.Ticket;
 import com.sdlite.domain.entities.User;
 import com.sdlite.domain.repositaries.TicketRepository;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import static com.sdlite.configuration.ConfigurationKeys.SD_CONF_DATE_TIME_MASK_KEY;
+
 @Controller
 public class HomeController {
 
@@ -18,6 +21,8 @@ public class HomeController {
   private UserRepository userRepository;
   @Autowired
   private TicketRepository ticketRepository;
+  @Autowired
+  private ConfigurationStorage configurationStorage;
 
   @RequestMapping("/")
   public String home(Model model) {
@@ -31,6 +36,7 @@ public class HomeController {
     model.addAttribute("createdTickets", createdTickets);
     Iterable<Ticket> newTickets = ticketRepository.findByStatus(TicketStatus.NEW.getValue());
     model.addAttribute("newTickets", newTickets);
+    model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
     return "home";
   }
 }

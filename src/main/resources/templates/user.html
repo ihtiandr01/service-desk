@@ -22,8 +22,7 @@
 
     <p>e-mail: <span th:text="${user.getEmail()}">Email</span></p>
 
-    <p>Created: <span th:text="${user.getCreated()}">Created</span></p>
-
+    <p>Created: <span th:text="${#dates.format(user.getCreated(), datemask)}">Created</span></p>
 
 </div>
 

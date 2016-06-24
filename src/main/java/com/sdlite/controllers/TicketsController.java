@@ -1,5 +1,6 @@
 package com.sdlite.controllers;
 
+import com.sdlite.configuration.ConfigurationStorage;
 import com.sdlite.controllers.forms.NewCommentForm;
 import com.sdlite.controllers.forms.NewTicketForm;
 import com.sdlite.domain.UserHelper;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.sdlite.configuration.ConfigurationKeys.SD_CONF_DATE_TIME_MASK_KEY;
+
 @Controller
 public class TicketsController {
 
@@ -32,6 +35,8 @@ public class TicketsController {
   UserRepository userRepository;
   @Autowired
   UserHelper userHelper;
+  @Autowired
+  private ConfigurationStorage configurationStorage;
 
   @RequestMapping("/tickets")
   public String tickets(Model model, Pageable pageable) {
@@ -42,6 +47,7 @@ public class TicketsController {
   public String ticketsPaging(@PathVariable Integer pageNumber, Model model) {
     Page<Ticket> currentResults = ticketRepository.findAll(new PageRequest(pageNumber - 1, 20));
     PagingHelper.newInstance().createPagingModel(model, currentResults);
+    model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
     return "tickets";
   }
 
@@ -79,6 +85,7 @@ public class TicketsController {
     model.addAttribute("comments", comments);
     model.addAttribute("ticket", ticketRepository.findOne(ticketId));
     model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
+    model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
     return "ticket";
   }
 

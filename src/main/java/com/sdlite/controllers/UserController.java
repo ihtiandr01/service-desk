@@ -1,6 +1,7 @@
 package com.sdlite.controllers;
 
 
+import com.sdlite.configuration.ConfigurationStorage;
 import com.sdlite.controllers.forms.NewUserForm;
 import com.sdlite.domain.entities.User;
 import com.sdlite.domain.entities.builders.UserBuilder;
@@ -14,17 +15,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import static com.sdlite.configuration.ConfigurationKeys.SD_CONF_DATE_TIME_MASK_KEY;
+
 @Controller
 public class UserController {
 
   @Autowired
   UserRepository userRepository;
+  @Autowired
+  private ConfigurationStorage configurationStorage;
 
   @RequestMapping("/users")
   public String users(Model model) {
     Iterable<User> users = userRepository.findAll();
     model.addAttribute("users", users);
     model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
+    model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
     return "users";
   }
 
@@ -32,6 +38,7 @@ public class UserController {
   public String showUser(@PathVariable Long userId, Model model) {
     model.addAttribute("user", userRepository.findOne(userId));
     model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
+    model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
     return "user";
   }
 

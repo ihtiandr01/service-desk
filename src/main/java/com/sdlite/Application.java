@@ -1,5 +1,6 @@
 package com.sdlite;
 
+import com.sdlite.configuration.ConfigurationStorage;
 import com.sdlite.domain.entities.ConfigurationItem;
 import com.sdlite.domain.entities.InventoryItem;
 import com.sdlite.domain.entities.Ticket;
@@ -13,7 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -34,6 +36,9 @@ public class Application implements CommandLineRunner {
 
   @Autowired
   SettingsRepository settingsRepository;
+
+  @Autowired
+  ConfigurationStorage configurationStorage;
 
 
   public static void main(String[] args) {
@@ -92,7 +97,7 @@ public class Application implements CommandLineRunner {
     userRepository.save(user2);
     userRepository.save(user3);
 
-    ConfigurationItem dateItem = new ConfigurationItem("sd.confitem.date_time_mask", "dd.MM.yyyy HH:mm");
+    ConfigurationItem dateItem = new ConfigurationItem("sd.confitem.date_time_mask", "dd-MM-yyyy HH:mm");
     settingsRepository.save(dateItem);
 
     /*************************************

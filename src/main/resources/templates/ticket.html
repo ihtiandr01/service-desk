@@ -20,18 +20,35 @@
     <div class="row">
         <div th:include="layout :: leftSideNavMenu"/>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="row">
+                <div class="col-md-1">
+                    <ul class="list-unstyled">
+                        <li>Name:</li>
+                        <li>Description:</li>
+                        <li>Created:</li>
+                        <li>Assign:</li>
+                        <li>Status:</li>
+                        <li>Priority:</li>
+                    </ul>
+                </div>
+                <div class="col-md-8">
+                    <ul class="list-unstyled">
+                        <li><span th:text="${ticket.getName()}">Name</span></li>
+                        <li><span th:text="${ticket.getDescription()}">Description</span></li>
+                        <li><span th:text="${#dates.format(ticket.getCreated(), datemask)}">Created</span></li>
+                        <li><span th:text="${ticket.getAssignName()}">Assign</span></li>
+                        <li><span th:text="${ticket.getStatus()}">Status</span></li>
+                        <li><span th:text="${ticket.getPriority()}">Priority</span></li>
+                    </ul>
 
-            <p>Name: <span th:text="${ticket.getName()}">Name</span>.</p>
+                </div>
+            </div>
 
-            <p>Description: <span th:text="${ticket.getDescription()}">Description</span>.</p>
-
-            <p>Created: <span th:text="${ticket.getCreated()}">Created</span>.</p>
-
-            <p>Assign: <span th:text="${ticket.getAssignName()}">Assign</span>.</p>
-
-            <p>Status: <span th:text="${ticket.getStatus()}">Status</span>.</p>
-
-            <p>Priority: <span th:text="${ticket.getPriority()}">Priority</span>.</p>
+            <!--p>Description: <span th:text="${ticket.getDescription()}">Description</span></p>
+            <p>Created: <span th:text="${#dates.format(ticket.getCreated(), datemask)}">Created</span></p>
+            <p>Assign: <span th:text="${ticket.getAssignName()}">Assign</span></p>
+            <p>Status: <span th:text="${ticket.getStatus()}">Status</span></p>
+            <p>Priority: <span th:text="${ticket.getPriority()}">Priority</span></p-->
 
             <form action="#" th:action="@{'/ticket/'+${ticket.getId()}+'/edit'}" th:object="${edit_ticket}"
                   method="post"
@@ -42,9 +59,8 @@
                     </div>
                 </div>
             </form>
-
-            <div class="center-block">
-                <table class="table table-striped">
+            <!--div class="center-block"-->
+                <table class="table table-striped table-condensed">
                     <thead>
                     <tr>
                         <th>Comment</th>
@@ -60,6 +76,7 @@
                     </tr>
                     </tbody>
                 </table>
+
 
                 <form action="#" th:action="@{'/ticket/'+${ticket.getId()}+'/newcomment'}" th:object="${newcomment}"
                       method="post"
@@ -78,11 +95,9 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            <!--/div-->
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

@@ -54,4 +54,3 @@ create table sd_settings (
   value varchar(250)
 );
 
-

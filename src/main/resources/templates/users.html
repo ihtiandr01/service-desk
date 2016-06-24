@@ -33,7 +33,7 @@
             </td>
             <td th:text="${user.getEmail()}">user.created</td>
             <td th:text="${user.getRole()}">user.created</td>
-            <td th:text="${user.getCreated()}">user.created</td>
+            <td th:text="${#dates.format(user.getCreated(), datemask)}">user.created</td>
         </tr>
         </tbody>
     </table>

@@ -14,9 +14,9 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="com.sdlite" level="DEBUG">
+    <!--logger name="com.sdlite" level="DEBUG">
         <appender-ref ref="STDOUT"/>
-    </logger>
+    </logger-->
 
     <root level="error">
         <appender-ref ref="STDOUT"/>
