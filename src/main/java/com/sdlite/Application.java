@@ -1,10 +1,7 @@
 package com.sdlite;
 
 import com.sdlite.configuration.ConfigurationStorage;
-import com.sdlite.domain.entities.ConfigurationItem;
-import com.sdlite.domain.entities.InventoryItem;
-import com.sdlite.domain.entities.Ticket;
-import com.sdlite.domain.entities.User;
+import com.sdlite.domain.entities.*;
 import com.sdlite.domain.entities.builders.TicketBuilder;
 import com.sdlite.domain.entities.builders.UserBuilder;
 import com.sdlite.domain.repositaries.*;
@@ -39,6 +36,9 @@ public class Application implements CommandLineRunner {
 
   @Autowired
   ConfigurationStorage configurationStorage;
+
+  @Autowired
+  TimeTrackerRecordRepository timeRecordRepository;
 
 
   public static void main(String[] args) {
@@ -99,6 +99,10 @@ public class Application implements CommandLineRunner {
 
     ConfigurationItem dateItem = new ConfigurationItem("sd.confitem.date_time_mask", "dd-MM-yyyy HH:mm");
     settingsRepository.save(dateItem);
+
+
+    TimeTrackerRecord timeRecord1 = new TimeTrackerRecord("Задача 1");
+    timeRecordRepository.save(timeRecord1);
 
     /*************************************
      TEST DATA END

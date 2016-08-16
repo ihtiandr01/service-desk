@@ -2,6 +2,8 @@ create sequence s_ticket_id;
 create sequence s_user_id;
 create sequence s_customer_id;
 create sequence s_comment_id;
+create sequence s_timetracker_id;
+create sequence s_inventory_id;
 
 create table sd_tickets (
   id    bigint DEFAULT nextval('s_ticket_id'),
@@ -52,5 +54,17 @@ create table sd_customers (
 create table sd_settings (
   key   varchar(128),
   value varchar(250)
+);
+
+
+create table sd_timetracker (
+  id bigint DEFAULT nextval('s_timetracker_id'),
+  ticket_id bigint,
+  name varchar(250),
+  description varchar(4000),
+  created timestamp,
+  duration timestamp,
+  start_date timestamp,
+  end_date timestamp
 );
 
