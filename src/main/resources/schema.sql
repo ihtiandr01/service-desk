@@ -60,6 +60,7 @@ create table sd_settings (
 create table sd_timetracker (
   id bigint DEFAULT nextval('s_timetracker_id'),
   ticket_id bigint,
+  user_id bigint,
   name varchar(250),
   description varchar(4000),
   created timestamp,

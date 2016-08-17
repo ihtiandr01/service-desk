@@ -12,6 +12,8 @@ public class TimeTrackerRecord {
   private Long id;
   @Column(name = "ticket_id")
   private Long ticketId;
+  @Column(name = "user_id")
+  private Long userId;
   @Column(name = "name", nullable = false)
   private String name;
   @Column(name = "description")
@@ -28,7 +30,8 @@ public class TimeTrackerRecord {
   protected TimeTrackerRecord() {
   }
 
-  public TimeTrackerRecord(String name) {
+  public TimeTrackerRecord(String name, long userId) {
+    this.userId= userId;
     this.name = name;
     created = new Timestamp(System.currentTimeMillis());
   }
@@ -91,6 +94,14 @@ public class TimeTrackerRecord {
 
   public Timestamp getCreated() {
     return created;
+  }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 
   @Override

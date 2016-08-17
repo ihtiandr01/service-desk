@@ -101,8 +101,10 @@ public class Application implements CommandLineRunner {
     settingsRepository.save(dateItem);
 
 
-    TimeTrackerRecord timeRecord1 = new TimeTrackerRecord("Задача 1");
+    TimeTrackerRecord timeRecord1 = new TimeTrackerRecord("Задача 1", admin.getId());
+    TimeTrackerRecord timeRecord2 = new TimeTrackerRecord("Задача 2", user1.getId());
     timeRecordRepository.save(timeRecord1);
+    timeRecordRepository.save(timeRecord2);
 
     /*************************************
      TEST DATA END
