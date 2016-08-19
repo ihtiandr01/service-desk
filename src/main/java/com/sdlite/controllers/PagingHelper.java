@@ -9,8 +9,8 @@ public class PagingHelper {
     model.addAttribute("currentResults", currentResults);
     int current = currentResults.getNumber() + 1;
     int begin = Math.max(1, current - 5);
-    //TODO check case when currentResults.getTotalPages() == 0
     int end = Math.min(begin + 10, currentResults.getTotalPages());
+    if(end == 0) end = 1;
     model.addAttribute("beginIndex", begin);
     model.addAttribute("endIndex", end);
     model.addAttribute("currentIndex", current);

@@ -28,17 +28,39 @@
                             <th>id</th>
                             <th>Name</th>
                             <th>Created</th>
+                            <th>Status</th>
+                            <th>Operations</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="timeRecord : ${currentResults}">
                             <td th:text="${timeRecord.getId()}">.</td>
                             <td th:text="${timeRecord.getName()}">.</td>
-                            <td th:text="${#dates.format(timeRecord.getCreated(), datemask)}">ticket.created</td>
+                            <td th:text="${#dates.format(timeRecord.getCreated(), datemask)}">.</td>
+                            <td th:text="${timeRecord.getStatus()}">.</td>
+                            <td>
+                                <a href="#" th:href="@{'/timetracker/start/'+${timeRecord.getId()}}">[Start] </a>
+                                <a href="#" th:href="@{'/timetracker/pause/'+${timeRecord.getId()}}">[Pause] </a>
+                                <a href="#" th:href="@{'/timetracker/end/'+${timeRecord.getId()}}">[End] </a>
+                                <a href="#" th:href="@{'/timetracker/delete/'+${timeRecord.getId()}}">[Delete]</a>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
                     <div th:include="layout :: tablePagination"/>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">New time tracker record</div>
+                <div class="panel-body">
+                    <form action="#" th:action="@{/newtimerecord}" th:object="${newtimerecord}" method="post"
+                          class="form-inline" role="form">
+                        <input type="text" id="name" name="name" value="" th:field="*{name}" required="required"
+                               class="input-small" placeholder="Name"/>
+                        <input type="text" id="description" name="description" value="" th:field="*{description}"
+                               class="input-small" placeholder="Description"/>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>

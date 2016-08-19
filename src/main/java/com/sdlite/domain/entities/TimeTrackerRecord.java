@@ -1,6 +1,8 @@
 package com.sdlite.domain.entities;
 
 
+import com.sdlite.businesslogic.timetracker.TimeRecordStatus;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -18,6 +20,8 @@ public class TimeTrackerRecord {
   private String name;
   @Column(name = "description")
   private String description;
+  @Column(name = "status")
+  private String status;
   @Column(name = "duration")
   private Timestamp duration;
   @Column(name = "start_date")
@@ -33,6 +37,7 @@ public class TimeTrackerRecord {
   public TimeTrackerRecord(String name, long userId) {
     this.userId= userId;
     this.name = name;
+    status = TimeRecordStatus.NEW.getValue();
     created = new Timestamp(System.currentTimeMillis());
   }
 
@@ -102,6 +107,14 @@ public class TimeTrackerRecord {
 
   public void setUserId(Long userId) {
     this.userId = userId;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
   @Override

@@ -63,6 +63,7 @@ create table sd_timetracker (
   user_id bigint,
   name varchar(250),
   description varchar(4000),
+  status varchar(20),
   created timestamp,
   duration timestamp,
   start_date timestamp,
