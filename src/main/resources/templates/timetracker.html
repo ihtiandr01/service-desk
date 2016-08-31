@@ -28,6 +28,9 @@
                             <th>id</th>
                             <th>Name</th>
                             <th>Created</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Duration</th>
                             <th>Status</th>
                             <th>Operations</th>
                         </tr>
@@ -36,7 +39,14 @@
                         <tr th:each="timeRecord : ${currentResults}">
                             <td th:text="${timeRecord.getId()}">.</td>
                             <td th:text="${timeRecord.getName()}">.</td>
-                            <td th:text="${#dates.format(timeRecord.getCreated(), datemask)}">.</td>
+                            <td th:text="${timeRecord.getCreated()!=null ?
+                                #dates.format(timeRecord.getCreated(), datemask):''}">.</td>
+                            <td th:text="${timeRecord.getStartDate()!=null ?
+                                #dates.format(timeRecord.getStartDate(), datemask):''}">.</td>
+                            <td th:text="${timeRecord.getEndDate()!=null ?
+                                #dates.format(timeRecord.getEndDate(), datemask):''}">.</td>
+                            <td th:text="${timeRecord.getDuration()!=null ?
+                                #dates.format(timeRecord.getDuration(), 'HH:mm:ss'):''}">.</td>
                             <td th:text="${timeRecord.getStatus()}">.</td>
                             <td>
                                 <a href="#" th:href="@{'/timetracker/start/'+${timeRecord.getId()}}">[Start] </a>
