@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Timetracker</title>
+    <title th:text="#{messages.time_tracker_ru_RU}">Timetracker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <!-- Bootstrap -->
     <link href="../static/css/bootstrap.min.css"
@@ -20,19 +20,19 @@
         <div th:include="layout :: leftSideNavMenu"/>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div class="panel panel-default">
-                <div class="panel-heading">Time tracker records</div>
+                <div class="panel-heading"><span th:text="#{messages.time_tracker_tbhead_1_ru_RU}">Time tracker records</span></div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>id</th>
-                            <th>Name</th>
-                            <th>Created</th>
-                            <th>Start</th>
-                            <th>End</th>
-                            <th>Duration</th>
-                            <th>Status</th>
-                            <th>Operations</th>
+                            <th >id</th>
+                            <th th:text="#{messages.time_tracker_tbhead_1_name_ru_RU}">Name</th>
+                            <th th:text="#{messages.time_tracker_tbhead_1_created_ru_RU}">Created</th>
+                            <!--th>Start</th-->
+                            <!--th>End</th-->
+                            <th th:text="#{messages.time_tracker_tbhead_1_duration_ru_RU}">Duration</th>
+                            <th th:text="#{messages.time_tracker_tbhead_1_status_ru_RU}">Status</th>
+                            <th th:text="#{messages.time_tracker_tbhead_1_oper_ru_RU}">Operations</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,18 +41,18 @@
                             <td th:text="${timeRecord.getName()}">.</td>
                             <td th:text="${timeRecord.getCreated()!=null ?
                                 #dates.format(timeRecord.getCreated(), datemask):''}">.</td>
-                            <td th:text="${timeRecord.getStartDate()!=null ?
-                                #dates.format(timeRecord.getStartDate(), datemask):''}">.</td>
-                            <td th:text="${timeRecord.getEndDate()!=null ?
-                                #dates.format(timeRecord.getEndDate(), datemask):''}">.</td>
+                            <!--td th:text="${timeRecord.getStartDate()!=null ?
+                                #dates.format(timeRecord.getStartDate(), datemask):''}">.</td-->
+                            <!--td th:text="${timeRecord.getEndDate()!=null ?
+                                #dates.format(timeRecord.getEndDate(), datemask):''}">.</td-->
                             <td th:text="${timeRecord.getDuration()!=null ?
                                 #dates.format(timeRecord.getDuration(), 'HH:mm:ss'):''}">.</td>
                             <td th:text="${timeRecord.getStatus()}">.</td>
                             <td>
-                                <a href="#" th:href="@{'/timetracker/start/'+${timeRecord.getId()}}">[Start] </a>
-                                <a href="#" th:href="@{'/timetracker/pause/'+${timeRecord.getId()}}">[Pause] </a>
-                                <a href="#" th:href="@{'/timetracker/end/'+${timeRecord.getId()}}">[End] </a>
-                                <a href="#" th:href="@{'/timetracker/delete/'+${timeRecord.getId()}}">[Delete]</a>
+                                <a href="#" th:text="#{messages.common_start_ru_RU}" th:href="@{'/timetracker/start/'+${timeRecord.getId()}}">[Start] </a>
+                                <a href="#" th:text="#{messages.common_pause_ru_RU}" th:href="@{'/timetracker/pause/'+${timeRecord.getId()}}">[Pause] </a>
+                                <a href="#" th:text="#{messages.common_end_ru_RU}" th:href="@{'/timetracker/end/'+${timeRecord.getId()}}">[End] </a>
+                                <a href="#" th:text="#{messages.common_delete_ru_RU}" th:href="@{'/timetracker/delete/'+${timeRecord.getId()}}">[Delete]</a>
                             </td>
                         </tr>
                         </tbody>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">New time tracker record</div>
+                <div class="panel-heading"><span th:text="#{messages.time_tracker_tbhead_2_ru_RU}">New time tracker record</span></div>
                 <div class="panel-body">
                     <form action="#" th:action="@{/newtimerecord}" th:object="${newtimerecord}" method="post"
                           class="form-inline" role="form">
