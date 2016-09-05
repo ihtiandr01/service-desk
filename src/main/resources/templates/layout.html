@@ -39,7 +39,7 @@
                     <a class="btn btn-default navbar-btn" href="/newticket" role="button">New Ticket</a>
                     <form action="/search" method="post" class="navbar-form navbar-right" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search"/>
+                            <input type="text" class="form-control" placeholder="Search" th:placeholder="#{messages.commom_search_ru_RU}"/>
                         </div>
                         <button type="submit" class="btn btn-default" th:text="#{messages.commom_submit_ru_RU}">Submit</button>
                     </form>
