@@ -20,7 +20,7 @@
         <div th:include="layout :: leftSideNavMenu"/>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div class="panel panel-default">
-                <div class="panel-heading"><span th:text="#{messages.time_tracker_tbhead_1_ru_RU}">Time tracker records</span></div>
+                <div class="panel-heading" th:text="#{messages.time_tracker_tbhead_1_ru_RU}">Time tracker records</div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
@@ -28,8 +28,6 @@
                             <th >ID</th>
                             <th th:text="#{messages.time_tracker_tbhead_1_name_ru_RU}">Name</th>
                             <th th:text="#{messages.time_tracker_tbhead_1_created_ru_RU}">Created</th>
-                            <!--th>Start</th-->
-                            <!--th>End</th-->
                             <th th:text="#{messages.time_tracker_tbhead_1_duration_ru_RU}">Duration</th>
                             <th th:text="#{messages.time_tracker_tbhead_1_status_ru_RU}">Status</th>
                             <th th:text="#{messages.time_tracker_tbhead_1_oper_ru_RU}">Operations</th>
@@ -41,10 +39,6 @@
                             <td th:text="${timeRecord.getName()}">.</td>
                             <td th:text="${timeRecord.getCreated()!=null ?
                                 #dates.format(timeRecord.getCreated(), datemask):''}">.</td>
-                            <!--td th:text="${timeRecord.getStartDate()!=null ?
-                                #dates.format(timeRecord.getStartDate(), datemask):''}">.</td-->
-                            <!--td th:text="${timeRecord.getEndDate()!=null ?
-                                #dates.format(timeRecord.getEndDate(), datemask):''}">.</td-->
                             <td th:text="${timeRecord.getDuration()!=null ?
                                 #dates.format(timeRecord.getDuration(), 'HH:mm:ss'):''}">.</td>
                             <td th:text="${timeRecord.getStatus()}">.</td>
@@ -66,10 +60,12 @@
                     <form action="#" th:action="@{/newtimerecord}" th:object="${newtimerecord}" method="post"
                           class="form-inline" role="form">
                         <input type="text" id="name" name="name" value="" th:field="*{name}" required="required"
-                               class="input-small" placeholder="Name"/>
+                               class="input-small" placeholder="Name"
+                               th:placeholder="#{messages.time_tracker_name_ru_RU}"/>
                         <input type="text" id="description" name="description" value="" th:field="*{description}"
-                               class="input-small" placeholder="Description"/>
-                        <button type="submit" class="btn">Submit</button>
+                               class="input-small" placeholder="Description"
+                               th:placeholder="#{messages.time_tracker_desc_ru_RU}"/>
+                        <button type="submit" class="btn" th:text="#{messages.commom_submit_ru_RU}">Submit</button>
                     </form>
                 </div>
             </div>

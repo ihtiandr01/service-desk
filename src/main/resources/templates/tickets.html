@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Tickets</title>
+    <title th:text="#{messages.tickets_ru_RU}">Tickets</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <!-- Bootstrap -->
     <link href="../static/css/bootstrap.min.css"
@@ -20,17 +20,17 @@
         <div th:include="layout :: leftSideNavMenu"/>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div class="panel panel-default">
-                <div class="panel-heading">Tickets</div>
+                <div class="panel-heading" th:text="#{messages.tickets_ru_RU}">Tickets</div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>id</th>
-                            <th>Name</th>
-                            <th>Priority</th>
-                            <th>Status</th>
-                            <th>Assigned to</th>
-                            <th>Created</th>
+                            <th>ID</th>
+                            <th th:text="#{messages.tickets_tbhead_1_name_ru_RU}">Name</th>
+                            <th th:text="#{messages.tickets_tbhead_1_priority_ru_RU}">Priority</th>
+                            <th th:text="#{messages.tickets_tbhead_1_status_ru_RU}">Status</th>
+                            <th th:text="#{messages.tickets_tbhead_1_assigned_to_ru_RU}">Assigned to</th>
+                            <th th:text="#{messages.tickets_tbhead_1_created_ru_RU}">Created</th>
                         </tr>
                         </thead>
                         <tbody>

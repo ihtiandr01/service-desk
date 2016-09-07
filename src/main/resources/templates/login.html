@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login</title>
+    <title th:text="#{messages.login_ru_RU}">Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <!-- Bootstrap -->
     <link href="../static/css/bootstrap.min.css"
@@ -17,19 +17,23 @@
 </head>
 <body>
 <div class="container">
-    <div th:if="${param.error}" class="alert alert-danger">
+    <div th:if="${param.error}" class="alert alert-danger"
+        th:text="#{messages.login_error_ru_RU}">
         Invalid username and password.
     </div>
-    <div th:if="${param.logout}" class="alert alert-warning">
+    <div th:if="${param.logout}" class="alert alert-warning"
+         th:text="#{messages.login_warn_ru_RU}">
         You have been logged out.
     </div>
     <form th:action="@{/login}" method="post" class="form-signin" role="form">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="username" class="sr-only">Username:</label>
+        <h2 class="form-signin-heading"
+            th:text="#{messages.login_desc_ru_RU}">Please sign in</h2>
+        <label for="username" class="sr-only" th:text="#{messages.login_username_ru_RU}">Username:</label>
         <input type="text" name="username" class="form-control"/>
-        <label for="password" class="sr-only">Password:</label>
+        <label for="password" class="sr-only" th:text="#{messages.login_pwd_ru_RU}">Password:</label>
         <input type="password" name="password" class="form-control"/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"
+                th:text="#{messages.login_sign_in_ru_RU}">Sign in</button>
     </form>
 </div>
 </body>
