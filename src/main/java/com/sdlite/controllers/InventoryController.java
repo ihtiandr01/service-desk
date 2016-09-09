@@ -36,14 +36,14 @@ public class InventoryController {
     PagingHelper.newInstance().createPagingModel(model, currentResults);
     model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
     model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
-    return "inventory";
+    return "inventory/inventory";
   }
 
   @RequestMapping(value = "/inventory/{itemId}", method = RequestMethod.GET)
   public String showItem(@PathVariable Long itemId, Model model) {
     model.addAttribute("item", inventoryRepository.findOne(itemId));
     model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
-    return "inventory_item";
+    return "inventory/inventory_item";
   }
 
 }

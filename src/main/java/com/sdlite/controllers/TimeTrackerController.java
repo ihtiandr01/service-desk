@@ -42,7 +42,7 @@ public class TimeTrackerController {
     PagingHelper.newInstance().createPagingModel(model, currentResults);
     model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
     model.addAttribute("newtimerecord", new NewTimeRecordForm());
-    return "timetracker";
+    return "timetracker/timetracker";
   }
 
   @RequestMapping(value = "/newtimerecord", method = RequestMethod.POST)

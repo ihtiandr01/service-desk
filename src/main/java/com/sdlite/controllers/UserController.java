@@ -31,7 +31,7 @@ public class UserController {
     model.addAttribute("users", users);
     model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
     model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
-    return "users";
+    return "users/users";
   }
 
   @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
@@ -39,7 +39,7 @@ public class UserController {
     model.addAttribute("user", userRepository.findOne(userId));
     model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
     model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
-    return "user";
+    return "users/user";
   }
 
 
@@ -47,7 +47,7 @@ public class UserController {
   public String newUserForm(Model model) {
     model.addAttribute("newuser", new NewUserForm());
     model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
-    return "newuser";
+    return "users/newuser";
   }
 
   @RequestMapping(value = "/newuser", method = RequestMethod.POST)

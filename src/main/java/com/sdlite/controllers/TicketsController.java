@@ -48,7 +48,7 @@ public class TicketsController {
     Page<Ticket> currentResults = ticketRepository.findAll(new PageRequest(pageNumber - 1, 20));
     PagingHelper.newInstance().createPagingModel(model, currentResults);
     model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
-    return "tickets";
+    return "tickets/tickets";
   }
 
 
@@ -56,7 +56,7 @@ public class TicketsController {
   public String newTicketForm(Model model) {
     model.addAttribute("newticket", new NewTicketForm());
     model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
-    return "newticket";
+    return "tickets/newticket";
   }
 
   @RequestMapping(value = "/newticket", method = RequestMethod.POST)
@@ -86,7 +86,7 @@ public class TicketsController {
     model.addAttribute("ticket", ticketRepository.findOne(ticketId));
     model.addAttribute("currentUser", SecurityHelper.getCurrentUsername());
     model.addAttribute("datemask", configurationStorage.getValue(SD_CONF_DATE_TIME_MASK_KEY));
-    return "ticket";
+    return "tickets/ticket";
   }
 
   @RequestMapping(value = "/ticket/{ticketId}/newcomment", method = RequestMethod.POST)
@@ -101,7 +101,7 @@ public class TicketsController {
   @RequestMapping(value = "/ticket/{ticketId}/edit", method = RequestMethod.POST)
   public String editTicket() {
     //TODO: Add functional for ticket edition
-    return "edit_ticket";
+    return "tickets/edit_ticket";
   }
 
 

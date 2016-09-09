@@ -16,7 +16,7 @@ public class SearchController {
   private ConfigurationStorage configurationStorage;
   @RequestMapping(value = "/search", method = RequestMethod.POST)
   public String search(@ModelAttribute SearchForm searchForm, Model model) {
-    return "search";
+    return "search/search";
   }
 
 }
