@@ -30,19 +30,16 @@
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <!--ul class="nav navbar-nav">
-                    <li><a href="/tickets">Tickets<span class="sr-only">(current)</span></a></li>
-                    <li><a href="/inventory">Inventory</a></li>
-                </ul-->
-
                 <ul class="nav navbar-nav navbar-right">
                     <a class="btn btn-default navbar-btn" href="/newticket" role="button"
-                        th:text="#{messages.commom_newticket_ru_RU}">New Ticket</a>
+                       th:text="#{messages.commom_newticket_ru_RU}">New Ticket</a>
                     <form action="/search" method="post" class="navbar-form navbar-right" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search" th:placeholder="#{messages.commom_search_ru_RU}"/>
+                            <input type="text" class="form-control" placeholder="Search"
+                                   th:placeholder="#{messages.commom_search_ru_RU}"/>
                         </div>
-                        <button type="submit" class="btn btn-default" th:text="#{messages.commom_submit_ru_RU}">Submit</button>
+                        <button type="submit" class="btn btn-default" th:text="#{messages.commom_submit_ru_RU}">Submit
+                        </button>
                     </form>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
@@ -63,14 +60,22 @@
     </nav>
 </div>
 
-<div th:fragment="leftSideNavMenu">
+<div th:fragment="leftSideNavMenu(activeTab)">
     <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-            <li class="active"><a href="/" th:text="#{messages.home_ru_RU}">Home</a></li>
-            <li><a href="/tickets" th:text="#{messages.tickets_ru_RU}">Tickets</a></li>
-            <li><a href="/inventory" th:text="#{messages.inventory_ru_RU}">Inventory</a></li>
-            <li><a href="#" th:text="#{messages.reports_ru_RU}">Reports</a></li>
-            <li><a href="/timetracker" th:text="#{messages.time_tracker_ru_RU}">Time Tracker</a></li>
+            <li th:class="${activeTab == 'home'} ? 'active' : null"><a href="/"
+                th:text="#{messages.home_ru_RU}">Home</a></li>
+            <li th:class="${activeTab == 'tickets'} ? 'active' : null"><a href="/tickets"
+                th:text="#{messages.tickets_ru_RU}">Tickets</a>
+            </li>
+            <li th:class="${activeTab == 'inventory'} ? 'active' : null"><a href="/inventory"
+                th:text="#{messages.inventory_ru_RU}">Inventory</a>
+            </li>
+            <li th:class="${activeTab == 'reports'} ? 'active' : null"><a href="#"
+                th:text="#{messages.reports_ru_RU}">Reports</a>
+            </li>
+            <li th:class="${activeTab == 'timetracker'} ? 'active' : null"><a href="/timetracker"
+                th:text="#{messages.time_tracker_ru_RU}">Time Tracker</a></li>
         </ul>
     </div>
 </div>
@@ -81,7 +86,7 @@
             <div class='pagination pagination-centered'>
                 <ul class="pagination">
                     <li th:class="${currentIndex == 1}? 'disabled' : ''">
-                        <span th:if='${currentIndex == 1}' th:text="#{messages.pagination_first_ru_RU}" >← First</span>
+                        <span th:if='${currentIndex == 1}' th:text="#{messages.pagination_first_ru_RU}">← First</span>
                         <a th:if='${currentIndex != 1}'
                            th:text="#{messages.pagination_first_ru_RU}"
                            th:href="@{${'1'}}">← First</a>
