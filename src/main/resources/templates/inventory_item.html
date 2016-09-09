@@ -14,11 +14,11 @@
     <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<div th:include="layout :: navigation"/>
+<div th:include="fragments/nav:: navigation"/>
 
 <div class="container-fluid">
     <div class="row">
-        <div th:include="layout :: leftSideNavMenu"/>
+        <div th:replace="fragments/nav :: leftSideNavMenu('inventory')"/>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <p>Name: <span th:text="${item.getName()}">Name</span>.</p>
             <p>Description: <span th:text="${item.getDescription()}">Description</span>.</p>

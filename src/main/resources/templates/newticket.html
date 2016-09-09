@@ -16,7 +16,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div th:include="layout :: leftSideNavMenu"/>
+        <div th:replace="fragments/nav :: leftSideNavMenu('tickets')"/>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <form action="#" th:action="@{/newticket}" th:object="${newticket}" method="post" class="form-horizontal"
                   role="form">

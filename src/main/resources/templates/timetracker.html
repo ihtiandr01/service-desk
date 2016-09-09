@@ -14,10 +14,10 @@
     <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<div th:include="layout :: navigation"/>
+<div th:include="fragments/nav :: navigation"/>
 <div class="container-fluid">
     <div class="row">
-        <div th:replace="layout :: leftSideNavMenu('timetracker')"/>
+        <div th:replace="fragments/nav :: leftSideNavMenu('timetracker')"/>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div class="panel panel-default">
                 <div class="panel-heading" th:text="#{messages.time_tracker_tbhead_1_ru_RU}">Time tracker records</div>
@@ -51,7 +51,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div th:include="layout :: tablePagination"/>
+                    <div th:include="fragments/pagination :: tablePagination"/>
                 </div>
             </div>
             <div class="panel panel-default">

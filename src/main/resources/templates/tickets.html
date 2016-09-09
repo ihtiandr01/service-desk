@@ -14,10 +14,10 @@
     <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<div th:include="layout :: navigation"/>
+<div th:include="fragments/nav :: navigation"/>
 <div class="container-fluid">
     <div class="row">
-        <div th:replace="layout :: leftSideNavMenu('tickets')"/>
+        <div th:replace="fragments/nav :: leftSideNavMenu('tickets')"/>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div class="panel panel-default">
                 <div class="panel-heading" th:text="#{messages.tickets_ru_RU}">Tickets</div>
@@ -46,7 +46,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div th:include="layout :: tablePagination"/>
+                    <div th:include="fragments/pagination :: tablePagination"/>
                 </div>
             </div>
         </div>

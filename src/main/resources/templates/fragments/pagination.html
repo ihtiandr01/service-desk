@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>pagination</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:fragment="tablePagination">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class='pagination pagination-centered'>
+                <ul class="pagination">
+                    <li th:class="${currentIndex == 1}? 'disabled' : ''">
+                        <span th:if='${currentIndex == 1}' th:text="#{messages.pagination_first_ru_RU}">← First</span>
+                        <a th:if='${currentIndex != 1}'
+                           th:text="#{messages.pagination_first_ru_RU}"
+                           th:href="@{${'1'}}">← First</a>
+                    </li>
+                    <li th:class="${currentIndex != 1}? '' : 'disabled'">
+                        <span th:if='${currentIndex == 1}'>«</span>
+                        <a th:if='${currentIndex != 1}'
+                           th:href="@{${(currentIndex - 1)}}"
+                           title='Go to previous page'>«</a>
+                    </li>
+                    <li th:each="item : ${#numbers.sequence(beginIndex,endIndex)}"
+                        th:class="${item == currentIndex ? 'active' : '' }">
+
+                        <span th:if='${item == currentIndex}' th:text='${item}'>1</span>
+
+                        <a th:if='${item != currentIndex}'
+                           th:href="@{${item }}">
+                            <span th:text='${item}'>1</span>
+                        </a>
+                    </li>
+                    <li th:class="${currentIndex != currentResults.totalPages}? '' : 'disabled'">
+                        <span th:if='${currentIndex == currentResults.totalPages}'>»</span>
+                        <a th:if='${currentIndex != currentResults.totalPages}'
+                           th:href="@{${(currentIndex + 1)}}" title='Go to next page'>»</a>
+                    </li>
+                    <li th:class="${currentIndex == currentResults.totalPages}? 'disabled' : ''">
+                        <span th:if='${currentIndex == currentResults.totalPages}'
+                              th:text="#{messages.pagination_last_ru_RU}">Last →</span>
+                        <a th:if='${currentIndex != currentResults.totalPages}'
+                           th:href="@{${currentResults.totalPages}}"
+                           th:text="#{messages.pagination_last_ru_RU}">Last →</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
