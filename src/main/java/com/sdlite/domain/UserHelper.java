@@ -21,7 +21,7 @@ public class UserHelper {
     Specification spec = new Specification<User>() {
       @Override
       public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-        return criteriaBuilder.like(root.get("name"), query + "%");
+        return criteriaBuilder.like(root.<String>get("name"), query + "%");
       }
     };
     return userRepository.findAll(spec);

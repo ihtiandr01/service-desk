@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:dt="http://github.com/dandelion/datatables">
 <head>
     <title th:text="#{messages.time_tracker_ru_RU}">Timetracker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -22,7 +22,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading" th:text="#{messages.time_tracker_tbhead_1_ru_RU}">Time tracker records</div>
                 <div class="panel-body">
-                    <table class="table table-striped">
+                    <table id="timetrackerTable" dt:table="true" class="table table-striped"  >
                         <thead>
                         <tr>
                             <th >ID</th>

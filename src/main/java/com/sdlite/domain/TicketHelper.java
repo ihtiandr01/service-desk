@@ -21,7 +21,7 @@ public class TicketHelper {
     Specification spec = new Specification<Ticket>() {
       @Override
       public Predicate toPredicate(Root<Ticket> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-        return criteriaBuilder.like(root.get("name"), query + "%");
+        return criteriaBuilder.like(root.<String>get("name"), query + "%");
       }
     };
     return ticketRepository.findAll(spec);
